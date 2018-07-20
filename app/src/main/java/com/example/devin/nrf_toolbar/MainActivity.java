@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.uart_menu_configurations, menu);
         getMenuInflater().inflate(R.menu.uart_menu, menu);
 
+        getMenuInflater().inflate(R.menu.help, menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 }
