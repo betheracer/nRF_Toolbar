@@ -3,6 +3,7 @@ package com.example.devin.nrf_toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,5 +16,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.uart_menu_configurations, menu);
+        getMenuInflater().inflate(R.menu.uart_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 }
