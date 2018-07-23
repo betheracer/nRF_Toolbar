@@ -1,5 +1,6 @@
 package com.example.devin.nrf_toolbar;
 
+import android.graphics.drawable.TransitionDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private UARTConfigurationsAdapter mConfigurationsAdapter;
+
+
+    private boolean mEditMode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.uart_menu_configurations, menu);
-        getMenuInflater().inflate(R.menu.uart_menu, menu);
+        getMenuInflater().inflate(mEditMode ? R.menu.uart_menu_config : R.menu.uart_menu, menu);
 
         getMenuInflater().inflate(R.menu.help, menu);
 
@@ -47,9 +52,38 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_about:
                 Toast.makeText(this, "어바웃", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.action_configure:
+                setEditMode(!mEditMode);
+                break;
         }
 
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    public void setEditMode(final boolean editMode) {
+        setEditMode(editMode, true);
+        invalidateOptionsMenu();
+    }
+
+
+    private void setEditMode(final boolean editmode, final boolean change) {
+
+        mEditMode = editmode;
+
+        final TransitionDrawable transition = (TransitionDrawable) getResources()
+                .getDrawable(editmode ? R.drawable.start_edit_mode : R.drawable.stop_edit_mode);
+
+        transition.setCrossFadeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(transition);
+        transition.startTransition(500);
+
+    }
+
+
+
 }
