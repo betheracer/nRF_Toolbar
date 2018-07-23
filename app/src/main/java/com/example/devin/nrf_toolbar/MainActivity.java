@@ -1,6 +1,10 @@
 package com.example.devin.nrf_toolbar;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.graphics.drawable.TransitionDrawable;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -89,6 +93,18 @@ public class MainActivity extends AppCompatActivity {
         transition.setCrossFadeEnabled(true);
         getSupportActionBar().setBackgroundDrawable(transition);
         transition.startTransition(500);
+
+
+        // Since Lollipop the status bar color may also be changed
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            final int colorFrom = ContextCompat.getColor(this, editmode ? R.color.actionBarColorDark : R.color.dark_orange);
+            final int colorTo = ContextCompat.getColor(this, !editmode ? R.color.actionBarColorDark : R.color.dark_orange);
+
+            final ValueAnimator anim = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+            anim.setDuration(200);
+            anim.addUpdateListener(animation -> getWindow().setStatusBarColor((Integer) animation.getAnimatedValue()));
+            anim.start();
+        }
 
     }
 
