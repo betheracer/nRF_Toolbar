@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private boolean mEditMode;
+
+    private Button button;
 
 
     @Override
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        button = (Button) findViewById(R.id.button);
+
     }
 
 
@@ -74,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
     private void setEditMode(final boolean editmode, final boolean change) {
 
         mEditMode = editmode;
+
+        button.setActivated(mEditMode);
 
         final TransitionDrawable transition = (TransitionDrawable) getResources()
                 .getDrawable(editmode ? R.drawable.start_edit_mode : R.drawable.stop_edit_mode);
