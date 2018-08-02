@@ -16,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         drawer.addDrawerListener(mDrawerToggle);
+
+        final TextView textView = (TextView) drawer.findViewById(R.id.plugin_container).findViewById(R.id.link_mcp);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mDrawerLayout.closeDrawers();
+            }
+        });
+
         mDrawerToggle.syncState();
     }
 
