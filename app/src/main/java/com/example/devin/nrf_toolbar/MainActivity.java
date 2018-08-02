@@ -75,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+
         final int id = item.getItemId();
         switch (id) {
             case android.R.id.home:
