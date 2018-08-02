@@ -5,4 +5,9 @@
     <string name="action_about">About</string>
 
 
+    <string name="drawer_plugin_nrf_connect">nRF Connect</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
 </resources>
