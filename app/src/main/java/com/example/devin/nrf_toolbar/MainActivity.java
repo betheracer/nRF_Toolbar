@@ -2,6 +2,7 @@ package com.example.devin.nrf_toolbar;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.content.res.Configuration;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
 import android.os.PersistableBundle;
@@ -68,10 +69,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
         mDrawerToggle.syncState();
     }
 
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
